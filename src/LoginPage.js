@@ -48,7 +48,7 @@ const LoginFormik = withFormik({
         password: Yup.string().required('Password is required')
     }),
     handleSubmit: (values) => {
-        const REST_API_URL = "YOUR_REST_API_URL";
+        const REST_API_URL = "http://localhost:5000/api/ngehe-post";
         fetch(REST_API_URL, {
             method: 'post',
             body: JSON.stringify(values)
@@ -61,7 +61,10 @@ const LoginFormik = withFormik({
             }
         }).then(data => {
             // HANDLE RESPONSE DATA
+            localStorage.setItem('customerToken', data);
             console.log(data);
+            window.location.href ="/home"
+            
         }).catch((error) => {
             // HANDLE ERROR
             console.log(error);
